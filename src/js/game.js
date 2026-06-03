@@ -34,7 +34,7 @@ export class Game extends Engine {
         fish.on("exitviewport", (e) => this.fishLeft(e))
 
         gameScene.add(background)
-        gameScene.add(fish)
+        // gameScene.add(fish)
 
         this.addScene("start", startScene)
         this.addScene("game", gameScene)
