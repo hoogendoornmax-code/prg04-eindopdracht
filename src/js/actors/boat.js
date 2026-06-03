@@ -18,7 +18,7 @@ export class Boat extends Actor {
         this.actions.repeat((repeatCtx) => {
             repeatCtx.moveBy(0, 10, 10)
             repeatCtx.moveBy(0, -10, 10)
-        }, 5)
+        },)
     }
 
 

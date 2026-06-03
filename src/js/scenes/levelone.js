@@ -1,4 +1,4 @@
-import { Actor, Color, Delay, FadeInOut, Font, FontUnit, Keys, Label, Scene, Vector } from "excalibur"
+import { Actor, Color, FadeInOut, Font, FontUnit, Keys, Label, Scene, Vector } from "excalibur"
 import { Resources } from "../resources.js"
 import { Boat } from "../actors/boat.js"
 import { Rod } from "../actors/rod.js"
@@ -6,7 +6,6 @@ import { Rod } from "../actors/rod.js"
 export class LevelOne extends Scene {
     onInitialize(engine) {
         const background = new Actor({
-            // Background position
             x: engine.halfDrawWidth,
             y: engine.halfDrawHeight,
             width: engine.drawWidth,
@@ -17,21 +16,32 @@ export class LevelOne extends Scene {
         this.add(background)
         background.scale = new Vector(0.85, 0.8)
 
-
-
-        let b = new Boat()
+        const b = new Boat()
         this.add(b)
 
-        let r = new Rod()
+        const r = new Rod()
         this.add(r)
 
+        //instruction
+        const instruction = new Label({
+            text: "Press arrow down to cast rod",
+            pos: new Vector(engine.halfDrawWidth, engine.halfDrawHeight),
+            font: new Font({
+                size: 64,
+                unit: FontUnit.Px,
+                color: Color.fromHex('#FFF8E1'),
+                strokeColor: Color.fromHex('#4A2C2A'),
+                lineWidth: 3,
+            })
+        })
+        instruction.anchor = new Vector(0.5, 0.5)
+        this.add(instruction)
     }
 
-    // Go to level 2
+    //cast rod
     onPreUpdate(engine) {
-        if (engine.input.keyboard.wasPressed(Keys.Space)) {
+        if (engine.input.keyboard.wasPressed(Keys.Down)) {
             engine.goToScene("leveltwo", {
-                // transition
                 sourceOut: new FadeInOut({ duration: 600, direction: 'out' }),
                 destinationIn: new FadeInOut({ duration: 600, direction: 'in' })
             })

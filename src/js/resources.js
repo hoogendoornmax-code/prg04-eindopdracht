@@ -7,7 +7,8 @@ const Resources = {
     Background: new ImageSource('images/Achtergrond lava.png'),
     Boat: new ImageSource('images/boat.png'),
     Rod: new ImageSource('images/rod.png'),
-    Background2: new ImageSource('images/background2.avif')
+    Background2: new ImageSource('images/background2.avif'),
+    Hook: new ImageSource('images/hook.png')
 }
 
 

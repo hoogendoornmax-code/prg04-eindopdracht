@@ -44,6 +44,7 @@ export class StartScene extends Scene {
         })
         instruction.anchor = new Vector(0.5, 0.5)
         this.add(instruction)
+
     }
 
 
