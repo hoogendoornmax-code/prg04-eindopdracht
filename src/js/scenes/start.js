@@ -16,7 +16,7 @@ export class StartScene extends Scene {
 
         //title
         const title = new Label({
-            text: "Title",
+            text: "Game Title",
             pos: new Vector(engine.halfDrawWidth, engine.halfDrawHeight - 200),
             font: new Font({ size: 64, unit: FontUnit.Px, color: Color.White })
         })
