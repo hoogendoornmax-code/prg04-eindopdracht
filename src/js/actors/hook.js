@@ -1,5 +1,6 @@
 import { Actor, Engine, Scene, Vector, DisplayMode, Keys } from "excalibur"
 import { Resources, ResourceLoader } from '../resources.js'
+import { Fish } from './fish.js'
 
 export class Hook extends Actor {
 
@@ -8,6 +9,8 @@ export class Hook extends Actor {
             width: Resources.Hook.width,
             height: Resources.Hook.height
         })
+
+
     }
     onInitialize(engine) {
         this.graphics.use(Resources.Hook.toSprite())
@@ -22,7 +25,7 @@ export class Hook extends Actor {
                 this.vel = new Vector(0, -300)
             }
         }
-        if (this.pos.y >= 330 && this.vel.y > 0) {
+        if (this.pos.y >= 360 && this.vel.y > 0) {
             this.vel = new Vector(0, -300)
         }
         if (engine.input.keyboard.isHeld(Keys.Right)) {
@@ -31,6 +34,17 @@ export class Hook extends Actor {
             this.vel = new Vector(-200, this.vel.y)
         } else {
             this.vel = new Vector(0, this.vel.y)
+        }
+    }
+
+    onCollisionStart(event, other) {
+        const collider = other || event.other
+        const otherActor = collider && (collider.owner || collider)
+        if (!otherActor) return
+
+
+        if (otherActor instanceof Fish) {
+            otherActor.kill()
         }
     }
 }

@@ -1,8 +1,9 @@
-import { Actor, Color, FadeInOut, Font, FontUnit, Keys, Label, Scene, Vector } from "excalibur"
+import { Actor, Color, FadeInOut, Font, FontUnit, Keys, Label, Scene, Vector, randomInRange } from "excalibur"
 import { Resources } from "../resources.js"
 import { Boat } from "../actors/boat.js"
 import { Rod } from "../actors/rod.js"
 import { Hook } from "../actors/hook.js"
+import { Fish } from "../actors/fish.js"
 
 export class LevelTwo extends Scene {
     onInitialize(engine) {
@@ -20,6 +21,11 @@ export class LevelTwo extends Scene {
 
         const h = new Hook()
         this.add(h)
+
+        for (let i = 0; i < 10; i++) {
+            const f = new Fish()
+            this.add(f)
+        }
 
     }
 
