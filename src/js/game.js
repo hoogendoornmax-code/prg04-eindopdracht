@@ -4,6 +4,7 @@ import { Resources, ResourceLoader } from './resources.js'
 import { StartScene } from './scenes/start.js'
 import { LevelOne } from './scenes/levelone.js'
 import { LevelTwo } from './scenes/leveltwo.js'
+import { LevelThree } from './scenes/levelthree.js'
 
 export class Game extends Engine {
 
@@ -22,6 +23,7 @@ export class Game extends Engine {
         this.addScene("start", new StartScene())
         this.addScene("game", new LevelOne())
         this.addScene("leveltwo", new LevelTwo())
+        this.addScene("levelthree", new LevelThree())
         this.goToScene("start")
     }
 

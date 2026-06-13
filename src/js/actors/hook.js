@@ -9,7 +9,8 @@ export class Hook extends Actor {
             width: Resources.Hook.width,
             height: Resources.Hook.height
         })
-
+        this.collisionTimer = 0
+        this.hitFish = false
 
     }
     onInitialize(engine) {
@@ -17,9 +18,26 @@ export class Hook extends Actor {
         this.pos = new Vector(640, -200)
         this.scale = new Vector(0.5, 0.5)
         this.vel = new Vector(0, 100)
+
+        //hitbox 
+        this.collider.useBoxCollider(
+            Resources.Hook.width * 0.4,
+            Resources.Hook.height * 0.08,
+            Vector.Half,
+            new Vector(0, Resources.Hook.height * 0.2)
+        )
+    }
+
+    reset() {
+        this.collisionTimer = 0
+        this.hitFish = false
+        this.vel = new Vector(0, 100)
+        this.pos = new Vector(640, -200)
     }
 
     onPreUpdate(engine) {
+        this.collisionTimer++
+
         if (engine.input.keyboard.wasPressed(Keys.Down)) {
             if (this.vel.y > 0) {
                 this.vel = new Vector(0, -300)
@@ -38,13 +56,18 @@ export class Hook extends Actor {
     }
 
     onCollisionStart(event, other) {
+        if (this.collisionTimer < 20) return
+        if (this.hitFish) return
+
         const collider = other || event.other
         const otherActor = collider && (collider.owner || collider)
         if (!otherActor) return
 
 
         if (otherActor instanceof Fish) {
+            this.hitFish = true
             otherActor.kill()
+            this.vel = new Vector(0, -300)
         }
     }
 }

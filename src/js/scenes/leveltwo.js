@@ -19,14 +19,27 @@ export class LevelTwo extends Scene {
         this.add(background2)
         background2.scale = new Vector(1.3, 1.5)
 
-        const h = new Hook()
-        this.add(h)
+        this.hook = new Hook()
+        this.add(this.hook)
+
+        this.hook.on("exitviewport", () => {
+            engine.goToScene("levelthree", {
+                sourceOut: new FadeInOut({ duration: 600, direction: 'out' }),
+                destinationIn: new FadeInOut({ duration: 600, direction: 'in' })
+            })
+        })
 
         for (let i = 0; i < 10; i++) {
             const f = new Fish()
             this.add(f)
         }
 
+    }
+
+    onActivate() {
+        if (this.hook) {
+            this.hook.reset()
+        }
     }
 
 }
