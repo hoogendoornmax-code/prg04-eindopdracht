@@ -53,12 +53,15 @@ export class LevelThree extends Scene {
         this.scoreLabel.anchor = new Vector(0.5, 0.5)
         this.add(this.scoreLabel)
 
-        // Makes score reset so u dont get the same each catch
-        this.updateScore()
+        this.scoreLabel.text = ""
     }
 
-    onActivate() {
-        this.updateScore()
+    onActivate(context) {
+        if (context.data?.hitFish) {
+            this.updateScore()
+        } else {
+            this.scoreLabel.text = "Better luck next time"
+        }
     }
 
     updateScore() {

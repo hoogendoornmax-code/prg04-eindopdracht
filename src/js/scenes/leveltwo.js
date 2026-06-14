@@ -24,6 +24,9 @@ export class LevelTwo extends Scene {
 
         this.hook.on("exitviewport", () => {
             engine.goToScene("levelthree", {
+                sceneActivationData: {
+                    hitFish: this.hook.hitFish
+                },
                 sourceOut: new FadeInOut({ duration: 600, direction: 'out' }),
                 destinationIn: new FadeInOut({ duration: 600, direction: 'in' })
             })
